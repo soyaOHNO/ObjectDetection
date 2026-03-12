@@ -29,9 +29,9 @@ while True:
     # 特徴点のマッチング
     # matches = bf.match(des1, des2)
     # matches = sorted(matches, key=lambda x: x.distance)
-    matches = bf.knnMatch(des1, des2, k=2)
-    good = matches[:20]
+    # good = matches[:20]
 
+    matches = bf.knnMatch(des1, des2, k=2)
     # Ratio Test で良いマッチングを抽出
     good = []
     for m, n in matches:
@@ -58,7 +58,6 @@ while True:
             # 3. 変換された座標を使って、カメラフレームに枠線を描画 (緑色, 太さ3)
             frame = cv2.polylines(frame, [np.int32(dst)], True, (0, 255, 0), 3, cv2.LINE_AA)
 
-    # カメラ映像のみを表示（drawMatchesによる並べる処理を削除）
     cv2.imshow("Object Tracking", frame)
 
 cap.release()
